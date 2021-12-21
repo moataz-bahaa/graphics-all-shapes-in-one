@@ -1,0 +1,18 @@
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\bin\Debug\net5.0-windows\graphics all in one.exe
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\bin\Debug\net5.0-windows\graphics all in one.deps.json
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\bin\Debug\net5.0-windows\graphics all in one.runtimeconfig.json
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\bin\Debug\net5.0-windows\graphics all in one.runtimeconfig.dev.json
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\bin\Debug\net5.0-windows\graphics all in one.dll
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\bin\Debug\net5.0-windows\ref\graphics all in one.dll
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\bin\Debug\net5.0-windows\graphics all in one.pdb
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.csproj.AssemblyReference.cache
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics_all_in_one.Form1.resources
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.csproj.GenerateResource.cache
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.AssemblyInfoInputs.cache
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.AssemblyInfo.cs
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.csproj.CoreCompileInputs.cache
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.dll
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\ref\graphics all in one.dll
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.pdb
+C:\Users\Moataz\source\repos\graphics all in one\graphics all in one\obj\Debug\net5.0-windows\graphics all in one.genruntimeconfig.cache
