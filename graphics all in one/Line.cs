@@ -10,66 +10,19 @@ namespace graphics_all_in_one
 {
     class Line
     {
+        private const int SIZE = 1000;
+        Point[] points = new Point[SIZE];
+        private int idx = 0;
         private Point p1;
         private Point p2;
         private int width, height;
-
+        private Bitmap bitmap;
         public Line(int width, int height)
         {
             this.width = width;
             this.height = height;
+            bitmap = new Bitmap(width, height);
         }
-        public Bitmap drawUsingDDA()
-        {
-            Bitmap bitmap = new Bitmap(width, height);
-            int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y), steps;
-            steps = Math.Max(dx, dy);
-            double xIncrement = dx / steps, yIncremnet = dy / steps,
-                x = p1.X, y = p1.Y;
-            for (int i = 0; i < steps; i++)
-            {
-                bitmap.SetPixel((int)Math.Round(x), (int)Math.Round(y), Color.Red);
-                x += xIncrement;
-                y += yIncremnet;
-            }
-            return bitmap;
-        }
-
-        public Bitmap drawUsingBresenham()
-        {
-            Bitmap bitmap = new Bitmap(width, height);
-            int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y);
-            int p = 2 * dy - dx;
-            int x, y, end;
-            if (p1.X > p2.X)
-            {
-                x = p2.X;
-                y = p2.Y;
-                end = p1.X;
-            }
-            else
-            {
-                x = p1.X;
-                y = p1.Y;
-                end = p2.X;
-            }
-            while (x < end)
-            {
-                bitmap.SetPixel(x, y, Color.Red);
-                x++;
-                if (p < 0)
-                {
-                    p += 2 * dy;
-                }
-                else
-                {
-                    p += 2 * dy - 2 * dx;
-                    y++;
-                }
-            }
-            return bitmap;
-        }
-
         public void initialize(string title = "")
         {
             Form form = new Form();
@@ -113,7 +66,7 @@ namespace graphics_all_in_one
 
 
             form.ClientSize = new Size(396, 107);
-            form.Controls.AddRange(new Control[] { label1, label2, label3, label4, x1, x2, y1, y2,
+            form.Controls.AddRange(new Control[] { label1, label2, label3, label4, x1, y1, x2, y2,
                 buttonOk, buttonCancel});
             form.ClientSize = new Size(400, 200);
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -136,6 +89,91 @@ namespace graphics_all_in_one
                     form.ShowDialog();
                 }
             }
+        }
+        void linePlotPoints()
+        {
+            bitmap = new Bitmap(width, height);
+            for (int i = 0; i < idx; i++)
+            {
+                bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
+            }
+        }
+        public Bitmap drawUsingDDA()
+        {
+            idx = 0;
+            int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y), steps;
+            steps = Math.Max(dx, dy);
+            double xIncrement = dx / steps, yIncremnet = dy / steps,
+                x = p1.X, y = p1.Y;
+            for (int i = 0; i < steps; i++)
+            {
+                points[idx++] = new Point((int)Math.Round(x), (int)Math.Round(y));
+                x += xIncrement;
+                y += yIncremnet;
+            }
+            linePlotPoints();
+            return bitmap;
+        }
+
+        public Bitmap drawUsingBresenham()
+        {
+            idx = 0;
+            int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y);
+            int p = 2 * dy - dx;
+            int x, y, end;
+            if (p1.X > p2.X)
+            {
+                x = p2.X;
+                y = p2.Y;
+                end = p1.X;
+            }
+            else
+            {
+                x = p1.X;
+                y = p1.Y;
+                end = p2.X;
+            }
+            while (x < end)
+            {
+                points[idx++] = new Point(x, y);
+                x++;
+                if (p < 0)
+                {
+                    p += 2 * dy;
+                }
+                else
+                {
+                    p += 2 * dy - 2 * dx;
+                    y++;
+                }
+            }
+            linePlotPoints();
+            return bitmap;
+        }
+
+        public Bitmap translate(int x, int y)
+        {
+            for (int i = 0; i < idx; i++)
+            {
+                points[i].X += x;
+                points[i].Y += y;
+            }
+            linePlotPoints();
+            return bitmap;
+        }
+        public Bitmap rotate(int angle)
+        {
+            for (int i = 0; i < idx; i++)
+            {
+                int x = points[i].X, y = points[i].Y;
+
+                x = (int)((x * Math.Cos(angle * 3.141592653589 / 180)) - (y * Math.Sin(angle * 3.141592653589 / 180)));
+                y = (int)((x * Math.Sin(angle * 3.141592653589 / 180)) + (y * Math.Cos(angle * 3.141592653589 / 180)));
+
+                points[i] = new Point(x, y);
+            }
+            linePlotPoints();
+            return bitmap;
         }
     }
 }

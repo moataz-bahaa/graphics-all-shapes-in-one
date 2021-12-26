@@ -10,38 +10,45 @@ namespace graphics_all_in_one
 {
     class Circle
     {
+        private const int SIZE = 1000;
+        Point[] points = new Point[SIZE];
+        private int idx = 0;
         private Point center;
         private int radiux, width, height;
+        Bitmap bitmap;
         public Circle (int width, int height)
         {
             this.width = width;
             this.height = height;
+            bitmap = new Bitmap(width, height);
+        }
+        void circlePlotPoints()
+        {
+            bitmap = new Bitmap(width, height);
+            for (int i = 0; i < idx; i++)
+            {
+                bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
+            }
+        }
+
+
+        void addPoints(int x, int y)
+        {
+            points[idx++] = new Point(center.X + x, center.Y + y);
+            points[idx++] = new Point(center.X + x, center.Y - y);
+            points[idx++] = new Point(center.X - x, center.Y + y);
+            points[idx++] = new Point(center.X - x, center.Y - y);
+            points[idx++] = new Point(center.X + y, center.Y + x);
+            points[idx++] = new Point(center.X - y, center.Y + x);
+            points[idx++] = new Point(center.X + y, center.Y - x);
+            points[idx++] = new Point(center.X - y, center.Y - x);
         }
 
         public Bitmap draw()
         {
-            Bitmap bitmap = new Bitmap(width, height);
-            void circlePlotPoints(int x, int y)
-            {
-                try
-                {
-                    bitmap.SetPixel(center.X + x, center.Y + y, Color.Red);
-                    bitmap.SetPixel(center.X - x, center.Y + y, Color.Red);
-                    bitmap.SetPixel(center.X + x, center.Y - y, Color.Red);
-                    bitmap.SetPixel(center.X - x, center.Y - y, Color.Red);
-
-                    bitmap.SetPixel(center.X + y, center.Y + x, Color.Red);
-                    bitmap.SetPixel(center.X - y, center.Y + x, Color.Red);
-                    bitmap.SetPixel(center.X + y, center.Y - x, Color.Red);
-                    bitmap.SetPixel(center.X - y, center.Y - x, Color.Red);
-                }
-                catch (Exception exp)
-                {
-                    MessageBox.Show(exp.Message);
-                }
-            }
+            idx = 0;
             int x = 0, y = radiux, p = 1 - radiux;
-            circlePlotPoints(x, y);
+            addPoints(x, y);
             while (x < y)
             {
                 x++;
@@ -52,12 +59,13 @@ namespace graphics_all_in_one
                     y--;
                     p += 2 * (x - y) + 1;
                 }
-                circlePlotPoints(x, y);
+                addPoints(x, y);
             }
+            circlePlotPoints();
             return bitmap;
         }
 
-        public void initialize()
+        public bool initialize()
         {
             Form form = new Form();
             Label label1 = new Label();
@@ -110,6 +118,7 @@ namespace graphics_all_in_one
                 {
                     this.center = new Point(int.Parse(x.Text), int.Parse(y.Text));
                     this.radiux = int.Parse(r.Text);
+                    return true;
                 }
                 else
                 {
@@ -117,11 +126,41 @@ namespace graphics_all_in_one
                     form.ShowDialog();
                 }
             }
+            return false;
         }
 
-        public void rotate()
+        public Bitmap scale(int x, int y)
         {
+            for (int i = 0; i < idx; i++)
+            {
+                int a = points[i].X, b = points[i].Y;
+                a -= center.X;
+                b -= center.Y;
 
+                a *= x;
+                b *= y;
+
+                a += center.X;
+                b += center.Y;
+
+                points[i] = new Point(a, b);
+            }
+            circlePlotPoints();
+            return bitmap;
         }
+
+        public Bitmap translate(int x, int y)
+        {
+            for (int i = 0; i < idx; i++)
+            {
+                points[i].X += x;
+                points[i].Y += y;
+            }
+            center.X += x;
+            center.Y += y;
+            circlePlotPoints();
+            return bitmap;
+        }
+
     }
 }
