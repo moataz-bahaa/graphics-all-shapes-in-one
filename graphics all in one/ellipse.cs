@@ -99,7 +99,7 @@ namespace graphics_all_in_one
             return false;
         }
 
-        void circlePlotPoints()
+        void ellipsePlotPoints()
         {
             bitmap = new Bitmap(width, height);
             for (int i = 0; i < idx; i++)
@@ -179,61 +179,97 @@ namespace graphics_all_in_one
                     p2 = p2 + dx - dy + (rx * rx);
                 }
             }
-            circlePlotPoints();
+            ellipsePlotPoints();
             return bitmap;
         }
 
-        public Bitmap scale(int x, int y)
+        int[] multiply(int[,] matrix, int[] p)
         {
+            int[] result = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                result[i] += matrix[i, 0] * p[0];
+                result[i] += matrix[i, 1] * p[1];
+                result[i] += matrix[i, 2] * p[2];
+            }
+            return result;
+        }
+        double[] multiply(double[,] matrix, double[] p)
+
+        {
+            double[] result = new double[3];
+            for (int i = 0; i < 3; i++)
+            {
+                result[i] += matrix[i, 0] * p[0];
+                result[i] += matrix[i, 1] * p[1];
+                result[i] += matrix[i, 2] * p[2];
+            }
+            return result;
+        }
+        public Bitmap scale(double sx, double sy)
+        {
+            double[,] S = { { sx, 0, 0 },
+                         { 0, sy, 0 },
+                         { 0, 0, 1 } };
+
             for (int i = 0; i < idx; i++)
             {
-                int a = points[i].X, b = points[i].Y;
-                a -= center.X;
-                b -= center.Y;
+                double[] p = { points[i].X, points[i].Y, 1 };
 
-                a *= x;
-                b *= y;
+                p[0] -= center.X;
+                p[1] -= center.Y;
 
-                a += center.X;
-                b += center.Y;
+                double[] newPoint = multiply(S, p);
 
-                points[i] = new Point(a, b);
+                newPoint[0] += center.X;
+                newPoint[1] += center.Y;
+
+                points[i] = new Point((int)Math.Round(newPoint[0]), (int)Math.Round(newPoint[1]));
             }
-            circlePlotPoints();
+            ellipsePlotPoints();
             return bitmap;
         }
 
-        public Bitmap translate(int x, int y)
+        public Bitmap translate(int tx, int ty)
         {
+            int[,] T = { { 1, 0, tx },
+                         { 0, 1, ty },
+                         { 0, 0, 1 } };
+
+
             for (int i = 0; i < idx; i++)
             {
-                points[i].X += x;
-                points[i].Y += y;
+                int[] p = multiply(T, new int[]{ points[i].X, points[i].Y, 1 });
+                points[i].X = p[0];
+                points[i].Y = p[1];
             }
-            center.X += x;
-            center.Y += y;
-            circlePlotPoints();
+
+            center.X += tx;
+            center.Y += ty;
+
+            ellipsePlotPoints();
             return bitmap;
         }
-
         public Bitmap rotate(int angle)
         {
+            double theta = angle * 3.141592653589 / 180;
+            double[,] R = {{Math.Cos(theta), -Math.Sin(theta), 0 },
+                        {Math.Sin(theta), Math.Cos(theta), 0 },
+                        {0, 0, 0 } };
+
             for (int i = 0; i < idx; i++)
             {
-                int x = points[i].X, y = points[i].Y;
+                double[] p = { points[i].X, points[i].Y, 1 };
+                p[0] -= center.X;
+                p[1] -= center.Y;
 
-                x -= center.X;
-                y -= center.Y;
+                double[] newPoint = multiply(R, p);
+                newPoint[0] += center.X;
+                newPoint[1] += center.Y;
 
-                x = (int)((x * Math.Cos(angle * 3.141592653589 / 180)) - (y * Math.Sin(angle * 3.141592653589 / 180)));
-                y = (int)((x * Math.Sin(angle * 3.141592653589 / 180)) + (y * Math.Cos(angle * 3.141592653589 / 180)));
-
-                x += center.X;
-                y += center.Y;
-
-                points[i] = new Point(x, y);
+                points[i] = new Point((int)Math.Round(newPoint[0]), (int)Math.Round(newPoint[1]));
             }
-            circlePlotPoints();
+            ellipsePlotPoints();
             return bitmap;
         }
     }

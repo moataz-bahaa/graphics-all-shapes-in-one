@@ -17,6 +17,7 @@ namespace graphics_all_in_one
         private Point p2;
         private int width, height;
         private Bitmap bitmap;
+        Point start;
         public Line(int width, int height)
         {
             this.width = width;
@@ -105,6 +106,7 @@ namespace graphics_all_in_one
             steps = Math.Max(dx, dy);
             double xIncrement = dx / steps, yIncremnet = dy / steps,
                 x = p1.X, y = p1.Y;
+            start = new Point((int)Math.Round(x), (int)Math.Round(y));
             for (int i = 0; i < steps; i++)
             {
                 points[idx++] = new Point((int)Math.Round(x), (int)Math.Round(y));
@@ -133,6 +135,7 @@ namespace graphics_all_in_one
                 y = p1.Y;
                 end = p2.X;
             }
+            start = new Point(x, x);
             while (x < end)
             {
                 points[idx++] = new Point(x, y);
@@ -151,29 +154,79 @@ namespace graphics_all_in_one
             return bitmap;
         }
 
-        public Bitmap translate(int x, int y)
+        int[] multiply(int[,] matrix, int[] p)
         {
+            int[] result = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                result[i] += matrix[i, 0] * p[0];
+                result[i] += matrix[i, 1] * p[1];
+                result[i] += matrix[i, 2] * p[2];
+            }
+            return result;
+        }
+        double[] multiply(double[,] matrix, double[] p)
+
+        {
+            double[] result = new double[3];
+            for (int i = 0; i < 3; i++)
+            {
+                result[i] += matrix[i, 0] * p[0];
+                result[i] += matrix[i, 1] * p[1];
+                result[i] += matrix[i, 2] * p[2];
+            }
+            return result;
+        }
+        public Bitmap translate(int tx, int ty)
+        {
+            int[,] T = { { 1, 0, tx },
+                         { 0, 1, ty },
+                         { 0, 0, 1 } };
+
             for (int i = 0; i < idx; i++)
             {
-                points[i].X += x;
-                points[i].Y += y;
+                int[] p = multiply(T, new int[] { points[i].X, points[i].Y, 1 });
+                points[i].X = p[0];
+                points[i].Y = p[1];
             }
             linePlotPoints();
             return bitmap;
         }
         public Bitmap rotate(int angle)
         {
+            double theta = angle * 3.141592653589 / 180;
+            double[,] R = {{Math.Cos(theta), -Math.Sin(theta), 0 },
+                        {Math.Sin(theta), Math.Cos(theta), 0 },
+                        {0, 0, 0 } };
+
             for (int i = 0; i < idx; i++)
             {
-                int x = points[i].X, y = points[i].Y;
+                double[] p = { points[i].X, points[i].Y, 1 };
+                p[0] -= start.X;
+                p[1] -= start.Y;
 
-                x = (int)((x * Math.Cos(angle * 3.141592653589 / 180)) - (y * Math.Sin(angle * 3.141592653589 / 180)));
-                y = (int)((x * Math.Sin(angle * 3.141592653589 / 180)) + (y * Math.Cos(angle * 3.141592653589 / 180)));
+                double[] newPoint = multiply(R, p);
+                newPoint[0] += start.X;
+                newPoint[1] += start.Y;
 
-                points[i] = new Point(x, y);
+                points[i] = new Point((int)Math.Round(newPoint[0]), (int)Math.Round(newPoint[1]));
             }
             linePlotPoints();
             return bitmap;
         }
+        //public Bitmap rotate(int angle)
+        //{
+        //    for (int i = 0; i < idx; i++)
+        //    {
+        //        int x = points[i].X, y = points[i].Y;
+
+        //        x = (int)((x * Math.Cos(angle * 3.141592653589 / 180)) - (y * Math.Sin(angle * 3.141592653589 / 180)));
+        //        y = (int)((x * Math.Sin(angle * 3.141592653589 / 180)) + (y * Math.Cos(angle * 3.141592653589 / 180)));
+
+        //        points[i] = new Point(x, y);
+        //    }
+        //    linePlotPoints();
+        //    return bitmap;
+        //}
     }
 }

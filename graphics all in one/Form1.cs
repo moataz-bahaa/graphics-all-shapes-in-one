@@ -133,7 +133,7 @@ namespace graphics_all_in_one
 
         private void scaleBtn_Click(object sender, EventArgs e)
         {
-            int x = int.Parse(scaleX.Text), y = int.Parse(scaleY.Text);
+            double x = double.Parse(scaleX.Text), y = double.Parse(scaleY.Text);
             if (cur == CIRCLE_MID_POINT)
             {
                 pictureBox1.Image = c.scale(x, y);
