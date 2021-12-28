@@ -104,7 +104,8 @@ namespace graphics_all_in_one
             bitmap = new Bitmap(width, height);
             for (int i = 0; i < idx; i++)
             {
-                bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
+                if (points[i].X >= 0 && points[i].Y >= 0 && points[i].X < width && points[i].Y < height)
+                    bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
             }
         }
 

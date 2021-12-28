@@ -96,7 +96,8 @@ namespace graphics_all_in_one
             bitmap = new Bitmap(width, height);
             for (int i = 0; i < idx; i++)
             {
-                bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
+                if (points[i].X >= 0 && points[i].Y >= 0 && points[i].X < width && points[i].Y < height)
+                    bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
             }
         }
         public Bitmap drawUsingDDA()
@@ -189,6 +190,7 @@ namespace graphics_all_in_one
                 points[i].X = p[0];
                 points[i].Y = p[1];
             }
+            start = new Point(points[0].X, points[0].Y);
             linePlotPoints();
             return bitmap;
         }
@@ -214,19 +216,5 @@ namespace graphics_all_in_one
             linePlotPoints();
             return bitmap;
         }
-        //public Bitmap rotate(int angle)
-        //{
-        //    for (int i = 0; i < idx; i++)
-        //    {
-        //        int x = points[i].X, y = points[i].Y;
-
-        //        x = (int)((x * Math.Cos(angle * 3.141592653589 / 180)) - (y * Math.Sin(angle * 3.141592653589 / 180)));
-        //        y = (int)((x * Math.Sin(angle * 3.141592653589 / 180)) + (y * Math.Cos(angle * 3.141592653589 / 180)));
-
-        //        points[i] = new Point(x, y);
-        //    }
-        //    linePlotPoints();
-        //    return bitmap;
-        //}
     }
 }
