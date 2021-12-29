@@ -11,17 +11,23 @@ namespace graphics_all_in_one
     class ellipse
     {
         private const int SIZE = 1000;
-        Point[] points = new Point[SIZE];
+        private Point[] points = new Point[SIZE];
         private int idx = 0;
         private Point center;
         private int width, height;
         private int rx, ry;
         Bitmap bitmap;
+
         public ellipse(int width, int height)
         {
             this.width = width;
             this.height = height;
             bitmap = new Bitmap(width, height);
+        }
+
+        public Point[] getPoints()
+        {
+            return points.Take(idx).ToArray();
         }
 
 

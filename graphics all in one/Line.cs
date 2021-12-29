@@ -24,6 +24,10 @@ namespace graphics_all_in_one
             this.height = height;
             bitmap = new Bitmap(width, height);
         }
+        public Point[] getPoints()
+        {
+            return points.Take(idx).ToArray();
+        }
         public void initialize(string title = "")
         {
             Form form = new Form();

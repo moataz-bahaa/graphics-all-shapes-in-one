@@ -49,10 +49,12 @@ namespace graphics_all_in_one
             this.textBox10 = new System.Windows.Forms.Label();
             this.rotateAngle = new System.Windows.Forms.TextBox();
             this.clearBtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -73,9 +75,9 @@ namespace graphics_all_in_one
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(4, 95);
+            this.pictureBox1.Location = new System.Drawing.Point(4, 222);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(881, 462);
+            this.pictureBox1.Size = new System.Drawing.Size(964, 413);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -101,7 +103,7 @@ namespace graphics_all_in_one
             this.groupBox1.Controls.Add(this.translateY);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.translateX);
-            this.groupBox1.Location = new System.Drawing.Point(933, 13);
+            this.groupBox1.Location = new System.Drawing.Point(38, 68);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(300, 143);
             this.groupBox1.TabIndex = 3;
@@ -161,7 +163,7 @@ namespace graphics_all_in_one
             this.groupBox2.Controls.Add(this.scaleY);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.scaleX);
-            this.groupBox2.Location = new System.Drawing.Point(933, 344);
+            this.groupBox2.Location = new System.Drawing.Point(698, 68);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(300, 148);
             this.groupBox2.TabIndex = 4;
@@ -217,7 +219,7 @@ namespace graphics_all_in_one
             this.groupBox3.Controls.Add(this.rotateBtn);
             this.groupBox3.Controls.Add(this.textBox10);
             this.groupBox3.Controls.Add(this.rotateAngle);
-            this.groupBox3.Location = new System.Drawing.Point(933, 176);
+            this.groupBox3.Location = new System.Drawing.Point(378, 68);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(300, 145);
             this.groupBox3.TabIndex = 8;
@@ -262,11 +264,30 @@ namespace graphics_all_in_one
             this.clearBtn.UseVisualStyleBackColor = true;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.Location = new System.Drawing.Point(1003, 80);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(230, 555);
+            this.dataGridView1.TabIndex = 12;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1245, 557);
+            this.ClientSize = new System.Drawing.Size(1245, 647);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -288,6 +309,7 @@ namespace graphics_all_in_one
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,6 +336,7 @@ namespace graphics_all_in_one
         private System.Windows.Forms.Button scaleBtn;
         private System.Windows.Forms.Button rotateBtn;
         private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

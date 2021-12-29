@@ -43,6 +43,7 @@ namespace graphics_all_in_one
                 {
                     line.initialize("Drawing Line Using DDA Algorithm");
                     pictureBox1.Image = line.drawUsingDDA();
+                    dataGridView1.DataSource = line.getPoints();
 
                 }
                 catch (Exception exp)
@@ -57,6 +58,7 @@ namespace graphics_all_in_one
                 {
                     line.initialize("Drawing Line Using Bresenham Algorithm");
                     pictureBox1.Image = line.drawUsingBresenham();
+                    dataGridView1.DataSource = line.getPoints();
                 }
                 catch (Exception exp)
                 {
@@ -68,7 +70,10 @@ namespace graphics_all_in_one
                 try
                 {
                     if (c.initialize())
+                    {
                         pictureBox1.Image = c.draw();
+                        dataGridView1.DataSource = c.getPoints();
+                    }
                 }
                 catch (Exception exp)
                 {
@@ -80,7 +85,10 @@ namespace graphics_all_in_one
                 try
                 {
                     if (elip.initialize())
+                    {
                         pictureBox1.Image = elip.draw();
+                        dataGridView1.DataSource = elip.getPoints();
+                    }
                 }
                 catch (Exception exp)
                 {
@@ -120,14 +128,17 @@ namespace graphics_all_in_one
             if (cur == CIRCLE_MID_POINT)
             {
                 pictureBox1.Image = c.translate(x, y);
+                dataGridView1.DataSource = c.getPoints();
             }
             else if (cur == ELLIPSE_MID_POINT)
             {
                 pictureBox1.Image = elip.translate(x, y);
+                dataGridView1.DataSource = elip.getPoints();
             }
             else if (cur == LINE_DDA || cur == LINE_BRESNHAM)
             {
                 pictureBox1.Image = line.translate(x, y);
+                dataGridView1.DataSource = line.getPoints();
             }
         }
 
@@ -137,10 +148,12 @@ namespace graphics_all_in_one
             if (cur == CIRCLE_MID_POINT)
             {
                 pictureBox1.Image = c.scale(x, y);
+                dataGridView1.DataSource = c.getPoints();
             }
             else if (cur == ELLIPSE_MID_POINT)
             {
                 pictureBox1.Image = elip.scale(x, y);
+                dataGridView1.DataSource = elip.getPoints();
             }
         }
 
@@ -150,15 +163,27 @@ namespace graphics_all_in_one
             if (cur == CIRCLE_MID_POINT)
                 MessageBox.Show("Circle Has No Rotate Diffrence");
             else if (cur == ELLIPSE_MID_POINT)
+            {
                 pictureBox1.Image = elip.rotate(angle);
+                dataGridView1.DataSource = elip.getPoints();
+            }
             else if (cur == LINE_DDA || cur == LINE_BRESNHAM)
+            {
                 pictureBox1.Image = line.rotate(angle);
+                dataGridView1.DataSource = line.getPoints();
+            }
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = null;
             cur = "";
+            dataGridView1.DataSource = new Point[] { };
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
