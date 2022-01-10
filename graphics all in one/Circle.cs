@@ -16,11 +16,14 @@ namespace graphics_all_in_one
         private Point center;
         private int radiux, width, height;
         Bitmap bitmap;
+        private int x_axios_center, y_axios_center;
         public Circle (int width, int height)
         {
             this.width = width;
             this.height = height;
             bitmap = new Bitmap(width, height);
+            x_axios_center = width / 2;
+            y_axios_center = height / 2;
         }
 
         public Point[] getPoints()
@@ -30,10 +33,31 @@ namespace graphics_all_in_one
         void circlePlotPoints()
         {
             bitmap = new Bitmap(width, height);
+
+            Line l1 = new Line(width, height);
+            Line l2 = new Line(width, height);
+            l1.setP1Andp2(new Point(0, y_axios_center), new Point(width, y_axios_center));
+            l1.drawUsingDDA();
+            Point[] arr1 = l1.getPoints();
+
+            l2.setP1Andp2(new Point(x_axios_center, 0), new Point(x_axios_center, height));
+            l2.drawUsingDDA();
+            Point[] arr2 = l2.getPoints();
+
+            foreach (Point it in arr1)
+                if (it.X >= 0 && it.Y >= 0 && it.X < width && it.Y < height)
+                    bitmap.SetPixel(it.X, it.Y, Color.Black);
+            
+            foreach (Point it in arr2)
+                if (it.X >= 0 && it.Y >= 0 && it.X < width && it.Y < height)
+                    bitmap.SetPixel(it.X, it.Y, Color.Black);
+
+
             for (int i = 0; i < idx; i++)
             {
-                if (points[i].X >= 0 && points[i].Y >= 0 && points[i].X < width && points[i].Y < height)
-                    bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
+                int x = Math.Abs(x_axios_center + points[i].X);
+                int y = Math.Abs(y_axios_center - points[i].Y);
+                bitmap.SetPixel(x, y, Color.Red);
             }
         }
 

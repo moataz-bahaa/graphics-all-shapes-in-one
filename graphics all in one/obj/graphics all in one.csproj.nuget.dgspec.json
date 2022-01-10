@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Moataz\\source\\repos\\graphics all in one\\graphics all in one\\graphics all in one.csproj": {}
+    "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\graphics all in one.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Moataz\\source\\repos\\graphics all in one\\graphics all in one\\graphics all in one.csproj": {
+    "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\graphics all in one.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Moataz\\source\\repos\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
+        "projectUniqueName": "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
         "projectName": "graphics all in one",
-        "projectPath": "C:\\Users\\Moataz\\source\\repos\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
+        "projectPath": "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
         "packagesPath": "C:\\Users\\Moataz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Moataz\\source\\repos\\graphics all in one\\graphics all in one\\obj\\",
+        "outputPath": "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Moataz\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -18,6 +18,12 @@ namespace graphics_all_in_one
         private int width, height;
         private Bitmap bitmap;
         Point start;
+
+        public void setP1Andp2(Point x, Point y)
+        {
+            p1 = x;
+            p2 = y;
+        }
         public Line(int width, int height)
         {
             this.width = width;
