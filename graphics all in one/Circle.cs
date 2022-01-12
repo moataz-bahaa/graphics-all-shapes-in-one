@@ -14,53 +14,15 @@ namespace graphics_all_in_one
         Point[] points = new Point[SIZE];
         private int idx = 0;
         private Point center;
-        private int radiux, width, height;
-        Bitmap bitmap;
-        private int x_axios_center, y_axios_center;
-        public Circle (int width, int height)
+        private int radiux;
+        public Circle ()
         {
-            this.width = width;
-            this.height = height;
-            bitmap = new Bitmap(width, height);
-            x_axios_center = width / 2;
-            y_axios_center = height / 2;
         }
 
         public Point[] getPoints()
         {
             return points.Take(idx).ToArray();
         }
-        void circlePlotPoints()
-        {
-            bitmap = new Bitmap(width, height);
-
-            Line l1 = new Line(width, height);
-            Line l2 = new Line(width, height);
-            l1.setP1Andp2(new Point(0, y_axios_center), new Point(width, y_axios_center));
-            l1.drawUsingDDA();
-            Point[] arr1 = l1.getPoints();
-
-            l2.setP1Andp2(new Point(x_axios_center, 0), new Point(x_axios_center, height));
-            l2.drawUsingDDA();
-            Point[] arr2 = l2.getPoints();
-
-            foreach (Point it in arr1)
-                if (it.X >= 0 && it.Y >= 0 && it.X < width && it.Y < height)
-                    bitmap.SetPixel(it.X, it.Y, Color.Black);
-            
-            foreach (Point it in arr2)
-                if (it.X >= 0 && it.Y >= 0 && it.X < width && it.Y < height)
-                    bitmap.SetPixel(it.X, it.Y, Color.Black);
-
-
-            for (int i = 0; i < idx; i++)
-            {
-                int x = Math.Abs(x_axios_center + points[i].X);
-                int y = Math.Abs(y_axios_center - points[i].Y);
-                bitmap.SetPixel(x, y, Color.Red);
-            }
-        }
-
 
         void addPoints(int x, int y)
         {
@@ -74,7 +36,7 @@ namespace graphics_all_in_one
             points[idx++] = new Point(center.X - y, center.Y - x);
         }
 
-        public Bitmap draw()
+        public void draw()
         {
             idx = 0;
             int x = 0, y = radiux, p = 1 - radiux;
@@ -91,8 +53,6 @@ namespace graphics_all_in_one
                 }
                 addPoints(x, y);
             }
-            circlePlotPoints();
-            return bitmap;
         }
 
         public bool initialize()
@@ -182,7 +142,7 @@ namespace graphics_all_in_one
             }
             return result;
         }
-        public Bitmap scale(double sx, double sy)
+        public void scale(double sx, double sy)
         {
             double[,] S = { { sx, 0, 0 },
                          { 0, sy, 0 },
@@ -202,11 +162,9 @@ namespace graphics_all_in_one
 
                 points[i] = new Point((int)Math.Round(newPoint[0]), (int)Math.Round(newPoint[1]));
             }
-            circlePlotPoints();
-            return bitmap;
         }
 
-        public Bitmap translate(int tx, int ty)
+        public void translate(int tx, int ty)
         {
             int[,] T = { { 1, 0, tx },
                          { 0, 1, ty },
@@ -222,9 +180,6 @@ namespace graphics_all_in_one
 
             center.X += tx;
             center.Y += ty;
-
-            circlePlotPoints();
-            return bitmap;
         }
 
     }

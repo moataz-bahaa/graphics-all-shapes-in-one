@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
+      "projectUniqueName": "D:\\faculty materials\\3th yeaar\\graphics\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
       "projectName": "graphics all in one",
-      "projectPath": "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
+      "projectPath": "D:\\faculty materials\\3th yeaar\\graphics\\graphics all in one\\graphics all in one\\graphics all in one.csproj",
       "packagesPath": "C:\\Users\\Moataz\\.nuget\\packages\\",
-      "outputPath": "D:\\faculty materials\\3th yeaar\\grahpics\\graphics all in one\\graphics all in one\\obj\\",
+      "outputPath": "D:\\faculty materials\\3th yeaar\\graphics\\graphics all in one\\graphics all in one\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Moataz\\AppData\\Roaming\\NuGet\\NuGet.Config",

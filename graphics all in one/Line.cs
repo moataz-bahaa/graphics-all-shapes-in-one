@@ -15,20 +15,15 @@ namespace graphics_all_in_one
         private int idx = 0;
         private Point p1;
         private Point p2;
-        private int width, height;
-        private Bitmap bitmap;
         Point start;
+        public Line()
+        {
+        }
 
         public void setP1Andp2(Point x, Point y)
         {
             p1 = x;
             p2 = y;
-        }
-        public Line(int width, int height)
-        {
-            this.width = width;
-            this.height = height;
-            bitmap = new Bitmap(width, height);
         }
         public Point[] getPoints()
         {
@@ -101,34 +96,64 @@ namespace graphics_all_in_one
                 }
             }
         }
-        void linePlotPoints()
-        {
-            bitmap = new Bitmap(width, height);
-            for (int i = 0; i < idx; i++)
-            {
-                if (points[i].X >= 0 && points[i].Y >= 0 && points[i].X < width && points[i].Y < height)
-                    bitmap.SetPixel(points[i].X, points[i].Y, Color.Red);
-            }
-        }
-        public Bitmap drawUsingDDA()
+        public void drawUsingDDA()
         {
             idx = 0;
-            int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y), steps;
-            steps = Math.Max(dx, dy);
-            double xIncrement = dx / steps, yIncremnet = dy / steps,
-                x = p1.X, y = p1.Y;
+            //int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y), steps;
+            //steps = Math.Max(dx, dy);
+            //double xIncrement = dx / steps, yIncremnet = dy / steps,
+            //    x = p1.X, y = p1.Y;
+            //start = new Point((int)Math.Round(x), (int)Math.Round(y));
+            //for (int i = 0; i < steps; i++)
+            //{
+            //    points[idx++] = new Point((int)Math.Round(x), (int)Math.Round(y));
+            //    x += xIncrement;
+            //    y += yIncremnet;
+            //}
+
+
+            // left to right
+            double dx, dy, x, y, xIncrement, yIncrement, steps;
+            if (p1.X > p2.X)
+            {
+                Point t = p1;
+                p1 = p2;
+                p2 = t;
+            }
+            dx = (p2.X - p1.X);
+            dy = (p2.Y - p1.Y);
+            x = p1.X;
+            y = p1.Y;
             start = new Point((int)Math.Round(x), (int)Math.Round(y));
+            steps = Math.Max(dx, dy);
+            double slope = dy / dx;
+            if (Math.Abs(slope) <= 1)
+            {
+                xIncrement = 1;
+                yIncrement = slope;
+            }
+            else
+            {
+                if (slope > 0)
+                {
+                    xIncrement = 1 / slope;
+                    yIncrement = 1;
+                }
+                else
+                {
+                    xIncrement = -1 / slope;
+                    yIncrement = -1;
+                }
+            }
             for (int i = 0; i < steps; i++)
             {
                 points[idx++] = new Point((int)Math.Round(x), (int)Math.Round(y));
                 x += xIncrement;
-                y += yIncremnet;
+                y += yIncrement;
             }
-            linePlotPoints();
-            return bitmap;
         }
 
-        public Bitmap drawUsingBresenham()
+        public void drawUsingBresenham()
         {
             idx = 0;
             int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y);
@@ -161,8 +186,6 @@ namespace graphics_all_in_one
                     y++;
                 }
             }
-            linePlotPoints();
-            return bitmap;
         }
 
         int[] multiply(int[,] matrix, int[] p)
@@ -188,7 +211,7 @@ namespace graphics_all_in_one
             }
             return result;
         }
-        public Bitmap translate(int tx, int ty)
+        public void translate(int tx, int ty)
         {
             int[,] T = { { 1, 0, tx },
                          { 0, 1, ty },
@@ -201,10 +224,8 @@ namespace graphics_all_in_one
                 points[i].Y = p[1];
             }
             start = new Point(points[0].X, points[0].Y);
-            linePlotPoints();
-            return bitmap;
         }
-        public Bitmap rotate(int angle)
+        public void rotate(int angle)
         {
             double theta = angle * 3.141592653589 / 180;
             double[,] R = {{Math.Cos(theta), -Math.Sin(theta), 0 },
@@ -223,8 +244,6 @@ namespace graphics_all_in_one
 
                 points[i] = new Point((int)Math.Round(newPoint[0]), (int)Math.Round(newPoint[1]));
             }
-            linePlotPoints();
-            return bitmap;
         }
     }
 }

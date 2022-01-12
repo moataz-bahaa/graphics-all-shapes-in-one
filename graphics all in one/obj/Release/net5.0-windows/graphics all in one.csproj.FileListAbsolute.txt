@@ -1,0 +1,18 @@
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\bin\Release\net5.0-windows\graphics all in one.exe
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\bin\Release\net5.0-windows\graphics all in one.deps.json
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\bin\Release\net5.0-windows\graphics all in one.runtimeconfig.json
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\bin\Release\net5.0-windows\graphics all in one.runtimeconfig.dev.json
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\bin\Release\net5.0-windows\graphics all in one.dll
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\bin\Release\net5.0-windows\ref\graphics all in one.dll
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\bin\Release\net5.0-windows\graphics all in one.pdb
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.csproj.AssemblyReference.cache
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics_all_in_one.Form1.resources
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.csproj.GenerateResource.cache
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.GeneratedMSBuildEditorConfig.editorconfig
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.AssemblyInfoInputs.cache
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.AssemblyInfo.cs
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.csproj.CoreCompileInputs.cache
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.dll
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\ref\graphics all in one.dll
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.pdb
+D:\faculty materials\3th yeaar\graphics\graphics all in one\graphics all in one\obj\Release\net5.0-windows\graphics all in one.genruntimeconfig.cache
